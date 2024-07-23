@@ -1,0 +1,287 @@
+@each $direction in top, right, bottom, left {
+  &.has-tooltip-#{$direction}-mobile {
+    @include mixins.mobile {
+      @include tooltip-direction(#{$direction});
+    }
+  }
+
+  &.has-tooltip-#{$direction}-tablet {
+    @include mixins.tablet {
+      @include tooltip-direction(#{$direction});
+    }
+  }
+
+  &.has-tooltip-#{$direction}-tablet-only {
+    @include mixins.tablet-only {
+      @include tooltip-direction(#{$direction});
+    }
+  }
+
+  &.has-tooltip-#{$direction}-touch {
+    @include mixins.touch {
+      @include tooltip-direction(#{$direction});
+    }
+  }
+
+  &.has-tooltip-#{$direction}-desktop {
+    @include mixins.desktop {
+      @include tooltip-direction(#{$direction});
+    }
+  }
+
+  &.has-tooltip-#{$direction}-desktop-only {
+    @include mixins.desktop-only {
+      @include tooltip-direction(#{$direction});
+    }
+  }
+
+  &.has-tooltip-#{$direction}-until-widescreen {
+    @include mixins.until-widescreen {
+      @include tooltip-direction(#{$direction});
+    }
+  }
+
+  &.has-tooltip-#{$direction}-widescreen {
+    @include mixins.widescreen {
+      @include tooltip-direction(#{$direction});
+    }
+  }
+
+  &.has-tooltip-#{$direction}-widescreen-only {
+    @include mixins.widescreen-only {
+      @include tooltip-direction(#{$direction});
+    }
+  }
+
+  &.has-tooltip-#{$direction}-until-fullhd {
+    @include mixins.until-fullhd {
+      @include tooltip-direction(#{$direction});
+    }
+  }
+
+  &.has-tooltip-#{$direction}-fullhd {
+    @include mixins.fullhd {
+      @include tooltip-direction(#{$direction});
+    }
+
+    // Hidden breakpoints
+  }
+}
+
+&.has-tooltip-hidden-mobile {
+  @include mixins.mobile {
+
+    &::after,
+    &::before {
+      opacity: 0 !important;
+      display: none !important;
+    }
+  }
+}
+
+&.has-tooltip-hidden-tablet {
+  @include mixins.tablet {
+
+    &::after,
+    &::before {
+      opacity: 0 !important;
+      display: none !important;
+    }
+  }
+}
+
+&.has-tooltip-hidden-tablet-only {
+  @include mixins.tablet-only {
+
+    &::after,
+    &::before {
+      opacity: 0 !important;
+      display: none !important;
+    }
+  }
+}
+
+&.has-tooltip-hidden-touch {
+  @include mixins.touch {
+
+    &::after,
+    &::before {
+      opacity: 0 !important;
+      display: none !important;
+    }
+  }
+}
+
+&.has-tooltip-hidden-desktop {
+  @include mixins.desktop {
+
+    &::after,
+    &::before {
+      opacity: 0 !important;
+      display: none !important;
+    }
+  }
+}
+
+&.has-tooltip-hidden-desktop-only {
+  @include mixins.desktop-only {
+
+    &::after,
+    &::before {
+      opacity: 0 !important;
+      display: none !important;
+    }
+  }
+}
+
+&.has-tooltip-hidden-until-widescreen {
+  @include mixins.until-widescreen {
+
+    &::after,
+    &::before {
+      opacity: 0 !important;
+      display: none !important;
+    }
+  }
+}
+
+&.has-tooltip-hidden-widescreen {
+  @include mixins.widescreen {
+
+    &::after,
+    &::before {
+      opacity: 0 !important;
+      display: none !important;
+    }
+  }
+}
+
+&.has-tooltip-hidden-widescreen-only {
+  @include mixins.widescreen-only {
+
+    &::after,
+    &::before {
+      opacity: 0 !important;
+      display: none !important;
+    }
+  }
+}
+
+&.has-tooltip-hidden-until-fullhd {
+  @include mixins.until-fullhd {
+
+    &::after,
+    &::before {
+      opacity: 0 !important;
+      display: none !important;
+    }
+  }
+}
+
+&.has-tooltip-hidden-fullhd {
+  @include mixins.fullhd {
+
+    &::after,
+    &::before {
+      opacity: 0 !important;
+      display: none !important;
+    }
+
+    // Text alignement breakpoints
+  }
+}
+
+@each $direction in (left, left), (centered, center), (right, right) {
+  $dir: nth($direction, 1);
+  $text: nth($direction, 2);
+
+  &.has-tooltip-text-#{$dir}-mobile {
+    @include mixins.mobile {
+      &::before {
+        text-align: #{$text};
+      }
+    }
+  }
+
+  &.has-tooltip-text-#{$dir}-tablet {
+    @include mixins.tablet {
+      &::before {
+        text-align: #{$text};
+      }
+    }
+  }
+
+  &.has-tooltip-text-#{$dir}-tablet-only {
+    @include mixins.tablet-only {
+      &::before {
+        text-align: #{$text};
+      }
+    }
+  }
+
+  &.has-tooltip-text-#{$dir}-touch {
+    @include mixins.touch {
+      &::before {
+        text-align: #{$text};
+      }
+    }
+  }
+
+  &.has-tooltip-text-#{$dir}-desktop {
+    @include mixins.desktop {
+      &::before {
+        text-align: #{$text};
+      }
+    }
+  }
+
+  &.has-tooltip-text-#{$dir}-desktop-only {
+    @include mixins.desktop-only {
+      &::before {
+        text-align: #{$text};
+      }
+    }
+  }
+
+  &.has-tooltip-text-#{$dir}-until-widescreen {
+    @include mixins.until-widescreen {
+      &::before {
+        text-align: #{$text};
+      }
+    }
+  }
+
+  &.has-tooltip-text-#{$dir}-widescreen {
+    @include mixins.widescreen {
+      &::before {
+        text-align: #{$text};
+      }
+    }
+  }
+
+  &.has-tooltip-text-#{$dir}-widescreen-only {
+    @include mixins.widescreen-only {
+      &::before {
+        text-align: #{$text};
+      }
+    }
+  }
+
+  &.has-tooltip-text-#{$dir}-until-fullhd {
+    @include mixins.until-fullhd {
+      &::before {
+        text-align: #{$text};
+      }
+    }
+  }
+
+  &.has-tooltip-text-#{$dir}-fullhd {
+    @include mixins.fullhd {
+      &::before {
+        text-align: #{$text};
+      }
+    }
+  }
+}
+
+;

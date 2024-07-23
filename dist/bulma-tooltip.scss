@@ -1,0 +1,187 @@
+@use "../../node_modules/bulma/sass/utilities/initial-variables" as iv;
+@use "../../node_modules/bulma/sass/utilities/derived-variables" as dv;
+@use "../../node_modules/bulma/sass/utilities/functions.scss" as fn;
+@use "../../node_modules/bulma/sass/utilities/mixins.scss" as mixins;
+
+@import 'variables';
+@import 'position';
+@import 'animation';
+
+@mixin tooltip-arrow {
+  &::after {
+    box-sizing: border-box;
+    color: $tooltip-color;
+    display: inline-block;
+    font-family: $tooltip-font-family;
+    font-size: $tooltip-font-size;
+    hyphens: auto;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    visibility: hidden;
+    z-index: $tooltip-z-index;
+    content: '';
+    border-style: solid;
+    border-width: $tooltip-arrow-size;
+    border-color: rgba($tooltip-background-color, $tooltip-background-opacity) transparent transparent transparent;
+    margin-bottom: $tooltip-arrow-size * -1 + 1;
+  }
+
+  @include tooltip-arrow-top;
+}
+
+@mixin tooltip-box {
+  &::before {
+    box-sizing: border-box;
+    color: $tooltip-color;
+    display: inline-block;
+    font-family: $tooltip-font-family;
+    font-size: $tooltip-font-size;
+    hyphens: auto;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    visibility: hidden;
+    z-index: $tooltip-z-index;
+    background: rgba($tooltip-background-color, $tooltip-background-opacity);
+    border-radius: $tooltip-radius;
+    content: attr(data-tooltip);
+    padding: $tooltip-padding;
+    text-overflow: ellipsis;
+    white-space: pre-line;
+  }
+
+  @include tooltip-box-top;
+}
+
+@mixin tooltip-multiline {
+  &::before {
+    height: auto;
+    width: $tooltip-max-width;
+    max-width: $tooltip-max-width;
+    text-overflow: clip;
+    white-space: normal;
+    word-break: keep-all;
+  }
+}
+
+[data-tooltip] {
+
+  &:not(.is-loading),
+  &:not(.is-disabled),
+  &:not([disabled]) {
+    cursor: pointer;
+    overflow: visible;
+    position: relative;
+
+    @include tooltip-box;
+
+    &.has-tooltip-arrow {
+      @include tooltip-arrow;
+    }
+
+    &.has-tooltip-bottom {
+      @include tooltip-direction('bottom');
+    }
+
+    &.has-tooltip-left {
+      @include tooltip-direction('left');
+    }
+
+    &.has-tooltip-right {
+      @include tooltip-direction('right');
+    }
+
+    &.has-tooltip-multiline {
+      @include tooltip-multiline;
+    }
+
+    &.has-tooltip-text-left {
+      &::before {
+        text-align: left;
+      }
+    }
+
+    &.has-tooltip-text-centered {
+      &::before {
+        text-align: center;
+      }
+    }
+
+    &.has-tooltip-text-right {
+      &::before {
+        text-align: right;
+      }
+    }
+
+    @each $name, $pair in dv.$colors {
+      $color: nth($pair, 1);
+      $color-invert: fn.bulmaFindColorInvert($color);
+
+      &.has-tooltip-#{$name} {
+        &::after {
+          border-color: rgba($color, $tooltip-background-opacity) transparent transparent transparent !important;
+        }
+
+        &.has-tooltip-bottom {
+          &::after {
+            border-color: transparent transparent rgba($color, $tooltip-background-opacity) transparent !important;
+          }
+        }
+
+        &.has-tooltip-left {
+          &::after {
+            border-color: transparent transparent transparent rgba($color, $tooltip-background-opacity) !important;
+          }
+        }
+
+        &.has-tooltip-right {
+          &::after {
+            border-color: transparent rgba($color, $tooltip-background-opacity) transparent transparent !important;
+          }
+        }
+
+        &:before {
+          background-color: rgba($color, $tooltip-background-opacity);
+          color: $color-invert;
+        }
+      }
+    }
+
+    @include tooltip-hover {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    &.has-tooltip-fade {
+      @include tooltip-fade;
+    }
+
+    @import 'responsiveness';
+  }
+}
+
+span {
+  &[data-tooltip] {
+    border-bottom: 1px dashed iv.$grey-lighter;
+
+    @each $name, $pair in dv.$colors {
+      $color: nth($pair, 1);
+      $color-invert: fn.bulmaFindColorInvert($color);
+
+      &.has-tooltip-#{$name} {
+        border-bottom-color: lighten($color, 5%);
+      }
+    }
+  }
+}
+
+.control {
+  span {
+    &[data-tooltip] {
+      border-bottom: none;
+    }
+  }
+}

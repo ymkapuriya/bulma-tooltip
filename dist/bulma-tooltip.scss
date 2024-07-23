@@ -1,7 +1,7 @@
-@use "../../node_modules/bulma/sass/utilities/initial-variables" as iv;
-@use "../../node_modules/bulma/sass/utilities/derived-variables" as dv;
-@use "../../node_modules/bulma/sass/utilities/functions.scss" as fn;
-@use "../../node_modules/bulma/sass/utilities/mixins.scss" as mixins;
+@use "bulma/sass/utilities/initial-variables" as iv;
+@use "bulma/sass/utilities/derived-variables" as dv;
+@use "bulma/sass/utilities/functions.scss" as fn;
+@use "bulma/sass/utilities/mixins.scss" as mixins;
 
 @import 'variables';
 @import 'position';
